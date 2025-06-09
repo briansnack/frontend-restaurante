@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import Voltar from './Voltar';
 
 function CriarPedido() {
   const { id } = useParams();
@@ -27,10 +28,11 @@ function CriarPedido() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="container">
+      <Voltar />
       <h2>Novo Pedido</h2>
       {itens.map((item, idx) => (
-        <div key={idx} style={{ marginBottom: '1rem' }}>
+        <div key={idx} className="box">
           <input placeholder="Prato" value={item.nomePrato} onChange={e => handleChange(idx, 'nomePrato', e.target.value)} />
           <input type="number" placeholder="Qtd" value={item.quantidade} onChange={e => handleChange(idx, 'quantidade', e.target.value)} />
           <input type="number" placeholder="Preço" value={item.precoUnitario} onChange={e => handleChange(idx, 'precoUnitario', e.target.value)} />

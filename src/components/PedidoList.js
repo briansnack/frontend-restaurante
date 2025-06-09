@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import Voltar from './Voltar';
 
 function PedidoList() {
   const { id } = useParams();
@@ -15,10 +16,11 @@ function PedidoList() {
   }, [id]);
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="container">
+      <Voltar />
       <h2>Pedidos do Restaurante {id}</h2>
       {pedidos.map(p => (
-        <div key={p.id} style={{ border: '1px solid #aaa', padding: '1rem', marginBottom: '1rem' }}>
+        <div key={p.id} className="box">
           <p><strong>Valor Total:</strong> R$ {p.valorTotal.toFixed(2)}</p>
           <h4>Itens:</h4>
           <ul>

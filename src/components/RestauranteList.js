@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import Voltar from './Voltar';
 
 function RestauranteList() {
   const [restaurantes, setRestaurantes] = useState([]);
@@ -13,10 +14,11 @@ function RestauranteList() {
   }, []);
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="container">
+      <Voltar />
       <h2>Restaurantes</h2>
       {restaurantes.map(rest => (
-        <div key={rest.id} style={{ border: '1px solid #ccc', padding: '1rem', marginBottom: '1rem' }}>
+        <div key={rest.id} className="box">
           <h3>{rest.nome}</h3>
           <p>Categoria: {rest.categoria}</p>
           <p>Localização: {rest.localizacao}</p>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import Voltar from './Voltar';
 
 function AvaliarPedido() {
   const { id } = useParams();
@@ -19,16 +20,17 @@ function AvaliarPedido() {
       navigate('/');
     } catch (error) {
       if (error.response && error.response.status === 409) {
-        alert('Este pedido já foi avaliado. Só é possível enviar uma avaliação por pedido.');
+        alert('Este pedido já foi avaliado.');
       } else {
         console.error(error);
-        alert('Ocorreu um erro ao enviar a avaliação. Tente novamente mais tarde.');
+        alert('Erro ao enviar avaliação.');
       }
     }
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="container">
+      <Voltar />
       <h2>Avaliar Pedido #{id}</h2>
       <label>Nota (1 a 5):</label>
       <input
@@ -37,14 +39,12 @@ function AvaliarPedido() {
         max="5"
         value={nota}
         onChange={e => setNota(e.target.value)}
-        style={{ marginBottom: '1rem', display: 'block' }}
       />
       <label>Comentário:</label>
       <textarea
         value={comentario}
         onChange={e => setComentario(e.target.value)}
         rows={4}
-        style={{ width: '100%', marginBottom: '1rem' }}
       />
       <button onClick={handleSubmit}>Enviar Avaliação</button>
     </div>
